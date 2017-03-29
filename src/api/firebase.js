@@ -44,6 +44,16 @@ class FirebaseApi {
     });
   }
 
+  static listenValue(path, callback, limit = 0) {
+    let pathRef = firebase.database().ref(path);
+    if (limit > 0) {
+      pathRef = pathRef.limitToLast(limit);
+    }
+
+    return pathRef.on('value', (snapshot) => callback(snapshot.val()));
+  }
+
+
   static GetValueByKeyOnce(path, key) {
     return firebase
       .database()
