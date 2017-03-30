@@ -1,10 +1,10 @@
-import React from 'react'
-import RoomList from '../organisms/RoomList'
-import RoomForm from '../organisms/RoomForm'
+import React from 'react';
+import RoomList from '../organisms/RoomList';
+import RoomForm from '../organisms/RoomForm';
 
 const DumbRoomModule = (props) => <div>
   <RoomForm />
   <RoomList />
-</div>
+</div>;
 
-export default DumbRoomModule
+export default DumbRoomModule;

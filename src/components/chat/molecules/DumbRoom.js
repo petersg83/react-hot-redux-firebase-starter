@@ -4,7 +4,7 @@ const DumbRoom = (props) => <div>
   <button
     onClick={props.onClick}
   >
-    {props.room.name }
+    {props.room.name}
   </button>
 </div>;
 

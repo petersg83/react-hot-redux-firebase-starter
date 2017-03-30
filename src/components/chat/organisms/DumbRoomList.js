@@ -1,5 +1,5 @@
-import React from 'react'
-import Room from '../molecules/Room'
+import React from 'react';
+import Room from '../molecules/Room';
 
 const DumbRoomList = (props) => {
   const rooms = Object.keys(props.rooms).map((key, index) => (
@@ -8,9 +8,14 @@ const DumbRoomList = (props) => {
     </div>
   ));
 
-  return <div>
+  return (<div>
     {rooms}
-  </div>
-}
+  </div>);
+};
 
-export default DumbRoomList
+DumbRoomList.propTypes = {
+  rooms: React.PropTypes.object
+};
+
+
+export default DumbRoomList;

@@ -8,7 +8,7 @@ const DumbMessageList = (props) => {
     </div>
   ));
 
-  return (<div className='messageList'>
+  return (<div className="messageList">
     {messages}
   </div>);
 };
