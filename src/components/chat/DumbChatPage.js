@@ -1,11 +1,10 @@
 import React from 'react';
-import MessageList from './organisms/MessageList';
-import ChatConsole from './organisms/ChatConsole';
+import ChatModule from './templates/ChatModule'
+import RoomModule from './templates/RoomModule'
 
 const DumbChatPage = (props) => <div>
   <h1>Chat</h1>
-  <MessageList />
-  <ChatConsole />
+  {props.currentRoom ? <ChatModule /> : <RoomModule />}
 </div>;
 
 export default DumbChatPage;

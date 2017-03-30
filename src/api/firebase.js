@@ -98,6 +98,13 @@ class FirebaseApi {
       .ref(path)
       .set(value);
   }
+
+  static databaseUpdate(path, value) {
+    return firebase
+      .database()
+      .ref(path)
+      .update(value);
+  }
 }
 
 export default FirebaseApi;

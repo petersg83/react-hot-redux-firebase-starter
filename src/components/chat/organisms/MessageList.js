@@ -20,10 +20,9 @@ const MessageList = compose(
     () => () => <p>Loading...</p>
   ),
   lifecycle({
-    componentDidMount(nextProps) {
-      console.log('currentRoom:', this.props.currentRoom);
+    componentDidMount() {
       this.props.listenLastMessages(this.props.currentRoom);
-    },
+    }
   }),
   branch(
     (props) => props.messagesLoaded,
@@ -34,7 +33,7 @@ const MessageList = compose(
     (props) => props.messages && Object.keys(props.messages).length > 0,
     (BaseComponent) => BaseComponent,
     () => () => <p>No messages ¯\_(ツ)_/¯</p>
-  ),
+  )
 )(DumbMessageList);
 
 export default MessageList;

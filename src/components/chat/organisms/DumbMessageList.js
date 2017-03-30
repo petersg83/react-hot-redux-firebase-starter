@@ -5,11 +5,10 @@ const DumbMessageList = (props) => {
   const messages = Object.keys(props.messages).map((key, index) => (
     <div key={index}>
       <Message message={props.messages[key]} />
-      <br />
     </div>
   ));
 
-  return (<div>
+  return (<div className='messageList'>
     {messages}
   </div>);
 };

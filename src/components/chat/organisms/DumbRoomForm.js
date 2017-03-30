@@ -1,11 +1,11 @@
 import React from 'react';
 import Message from '../molecules/Message';
 
-const DumbChatConsole = (props) => {
+const DumbRoomForm = (props) => {
   return (<form onSubmit={props.submit}>
     <input
       type="text"
-      placeholder="Your message..."
+      placeholder="New room..."
       value={props.text}
       onChange={(e) => props.setText(e.target.value)}
     />
@@ -13,9 +13,9 @@ const DumbChatConsole = (props) => {
   </form>);
 };
 
-DumbChatConsole.propTypes = {
+DumbRoomForm.propTypes = {
   submit: React.PropTypes.func,
   setText: React.PropTypes.func
 };
 
-export default DumbChatConsole;
+export default DumbRoomForm;
