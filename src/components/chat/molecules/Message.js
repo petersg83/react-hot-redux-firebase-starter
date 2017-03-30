@@ -1,7 +1,10 @@
 import React from 'react';
 
 const Message = (props) => <div>
-  <p>{props.message.author} : {props.message.text}</p>
+  <p>
+    {props.message.text} <br />
+    {props.message.authorId} - {new Date(props.message.timestamp).toLocaleString()}
+  </p>
 </div>;
 
 Message.propTypes = {
