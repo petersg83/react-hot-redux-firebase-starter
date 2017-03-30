@@ -7,6 +7,10 @@ export function addChatMessage(chatRoom, message) {
     return firebaseApi.databasePush(`/rooms/${chatRoom}/messages`, message)
 }
 
-export function listenLastRoomMessages(chatRoom, callback) {
-  return firebaseApi.listenValue(`/rooms/${chatRoom}/messages`, callback, 10)
+export function listenLastRoomMessages(chatRoom) {
+  return (dispatch) => {
+    firebaseApi.listenValue(`/rooms/${chatRoom}/messages`, (messages) => {
+      dispatch({type: types.CHAT_MESSAGES_LOADED_SUCCESS, messages})
+    }, 10);
+  }
 }

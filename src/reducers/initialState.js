@@ -8,6 +8,10 @@ export default {
     ]
   },
   routing: {},
+  chat: {
+    messagesLoaded: false,
+    messages: {}
+  },
   user: {
     isAdmin: undefined
   },
