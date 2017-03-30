@@ -3,7 +3,7 @@ import ChatModule from './templates/ChatModule'
 import RoomModule from './templates/RoomModule'
 
 const DumbChatPage = (props) => <div>
-  <h1>Chat</h1>
+  <h1>Chat {props.currentRoom ? ' - ' + props.currentRoom : ''}</h1>
   {props.currentRoom ? <ChatModule /> : <RoomModule />}
 </div>;
 

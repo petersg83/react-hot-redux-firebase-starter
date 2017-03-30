@@ -8,6 +8,7 @@ const DumbChatConsole = (props) => {
       placeholder="Your message..."
       value={props.text}
       onChange={(e) => props.setText(e.target.value)}
+      className='consoleInput'
     />
     <input type="submit" value="Send"/>
   </form>);

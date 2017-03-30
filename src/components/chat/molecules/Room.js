@@ -5,7 +5,7 @@ import { bindActionCreators } from 'redux';
 import DumbRoom from './DumbRoom'
 import { addUserToChatRoom } from '../../../actions/chatActions';
 
-const mapStateToProps = (state) => ({ currentUserUID: state.auth.currentUserUID });
+const mapStateToProps = (state) => ({ user: state.user });
 const mapDispatchToProps = (dispatch) => ({
   addUserToChatRoom: bindActionCreators(addUserToChatRoom, dispatch)
 });
@@ -14,7 +14,7 @@ const Room = compose(
   connect(mapStateToProps, mapDispatchToProps),
   withHandlers({
     onClick: (props) => (e) => {
-       props.addUserToChatRoom(props.room.name, props.currentUserUID);
+       props.addUserToChatRoom(props.room.name, props.user.uid, props.user.email);
        e.preventDefault()
     }
   })

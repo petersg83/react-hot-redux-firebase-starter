@@ -28,9 +28,17 @@ export function listenLastRoomMessages(chatRoom) {
   };
 }
 
-export function addUserToChatRoom(chatRoom, userId) {
+export function listenActiveChatRoomUsers(chatRoom) {
   return (dispatch) => {
-    return firebaseApi.databaseSet(`/rooms/${chatRoom}/activeUsers/${userId}`, true)
+    return firebaseApi.listenValue(`/rooms/${chatRoom}/activeUsers`, (activeUsers) => {
+      dispatch({type: types.CHAT_ACTIVE_USERS_LOADED_SUCCESS, activeUsers});
+    });
+  };
+}
+
+export function addUserToChatRoom(chatRoom, userId, userEmail) {
+  return (dispatch) => {
+    return firebaseApi.databaseSet(`/rooms/${chatRoom}/activeUsers/${userId}`, userEmail)
       .then((result) => {
         firebaseApi.removeOnDisconnect(`/rooms/${chatRoom}/activeUsers/${userId}`);
         dispatch({type: types.CHAT_USER_JOIN_ROOM_SUCCESS, chatRoom});

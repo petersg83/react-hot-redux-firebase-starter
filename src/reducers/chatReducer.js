@@ -11,6 +11,8 @@ export default function chatReducer(state = initialState.chat, action) {
       return Object.assign({}, state, {currentRoom: null, messages: null});
     case types.CHAT_ROOMS_LOADED_SUCCESS:
       return Object.assign({}, state, {rooms: action.rooms, roomsLoaded: true});
+    case types.CHAT_ACTIVE_USERS_LOADED_SUCCESS:
+      return Object.assign({}, state, {activeUsers: action.activeUsers, activeUsersLoaded: true});
     default:
       return state;
   }

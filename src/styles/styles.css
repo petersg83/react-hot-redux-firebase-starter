@@ -31,6 +31,10 @@ nav {
   max-width: 300px;
 }
 
+.activeUsers {
+  width: 350px;
+}
+
 .messageInfo {
   font-size: xx-small;
 }
@@ -52,6 +56,10 @@ nav {
   text-align: right;
   background-color: #0084ff;
   color: white;
+}
+
+.consoleInput {
+  width: 300px;
 }
 
 .loading {
