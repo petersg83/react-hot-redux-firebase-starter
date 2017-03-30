@@ -5,17 +5,18 @@ import { branch, compose, lifecycle, withHandlers, withState } from 'recompose';
 import DumbChatConsole from './DumbChatConsole';
 import { addChatMessage } from '../../../actions/chatActions';
 
+const mapStateToProps = (state) => ({ currentUserUID: state.auth.currentUserUID });
 const ChatConsole = compose(
+  connect(mapStateToProps),
   withState('text', 'setText', ''),
   withHandlers({
     submit: (props) => (e) => {
-      addChatMessage('room1', {authorId: props.auth.currentUserUID, text: props.text, timestamp: new Date().getTime()})
+      addChatMessage('room1', {authorId: props.currentUserUID, text: props.text, timestamp: new Date().getTime()})
       props.setText('');
       e.preventDefault();
     }
   })
 )(DumbChatConsole);
 
-const mapStateToProps = (state) => ({ auth: state.auth });
 
-export default connect(mapStateToProps)(ChatConsole);
+export default ChatConsole;

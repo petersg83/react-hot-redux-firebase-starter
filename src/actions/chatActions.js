@@ -9,8 +9,27 @@ export function addChatMessage(chatRoom, message) {
 
 export function listenLastRoomMessages(chatRoom) {
   return (dispatch) => {
-    firebaseApi.listenValue(`/rooms/${chatRoom}/messages`, (messages) => {
+    return firebaseApi.listenValue(`/rooms/${chatRoom}/messages`, (messages) => {
       dispatch({type: types.CHAT_MESSAGES_LOADED_SUCCESS, messages})
     }, 10);
+  }
+}
+
+export function addUserToChatRoom(chatRoom, userId) {
+  return (dispatch) => {
+    return firebaseApi.databaseSet(`/rooms/${chatRoom}/activeUsers/${userId}`, true)
+      .then((result) => {
+        firebaseApi.removeOnDisconnect(`/rooms/${chatRoom}/activeUsers/${userId}`)
+        dispatch({type: types.CHAT_USER_JOIN_ROOM_SUCCESS, chatRoom})
+      })
+      .catch(dispatch({type: types.CHAT_USER_JOIN_ROOM_FAILED, chatRoom}))
+  }
+}
+
+export function removeUserFromChatRoom(chatRoom, userId) {
+  return (dispatch) => {
+     return firebaseApi.databaseRemove(`/rooms/${chatRoom}/activeUsers/${userId}`)
+      .then(dispatch({type: types.CHAT_USER_LEAVE_ROOM_SUCCESS, chatRoom}))
+      .catch(dispatch({type: types.CHAT_USER_LEAVE_ROOM_FAILED, chatRoom}))
   }
 }

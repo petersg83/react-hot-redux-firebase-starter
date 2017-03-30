@@ -10,7 +10,8 @@ export default {
   routing: {},
   chat: {
     messagesLoaded: false,
-    messages: {}
+    currentRoom: null,
+    messages: null
   },
   user: {
     isAdmin: undefined

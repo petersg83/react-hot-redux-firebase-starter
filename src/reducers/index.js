@@ -14,7 +14,7 @@ const rootReducer = combineReducers({
   user,
   auth,
   chat,
-  ajaxCallsInProgress,
+  ajaxCallsInProgress
 });
 
 export default rootReducer;

@@ -44,15 +44,35 @@ class FirebaseApi {
     });
   }
 
+  static databaseRemove(path) {
+    return new Promise((resolve, reject) => {
+      firebase
+        .database()
+        .ref(path)
+        .remove((error) => {
+          if (error) {
+            reject(error);
+          } else {
+            resolve();
+          }
+        });
+    });
+  }
+
   static listenValue(path, callback, limit = 0) {
     let pathRef = firebase.database().ref(path);
     if (limit > 0) {
       pathRef = pathRef.limitToLast(limit);
     }
 
-    return pathRef.on('value', (snapshot) => callback(snapshot.val()));
+    return pathRef.on('value', (snapshot) => {
+      return callback(snapshot.val());
+    });
   }
 
+  static removeOnDisconnect(path) {
+    firebase.database().ref(path).onDisconnect().remove();
+  }
 
   static GetValueByKeyOnce(path, key) {
     return firebase
@@ -73,12 +93,10 @@ class FirebaseApi {
   }
 
   static databaseSet(path, value) {
-
     return firebase
       .database()
       .ref(path)
       .set(value);
-
   }
 }
 
