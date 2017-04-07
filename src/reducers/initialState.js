@@ -11,7 +11,9 @@ export default {
   chat: {
     messagesLoaded: false,
     currentRoom: null,
-    messages: null
+    messages: null,
+    messagesByRoom: {},
+    activeUsersByRoom: {}
   },
   user: {
     isAdmin: undefined

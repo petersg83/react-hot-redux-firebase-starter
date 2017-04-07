@@ -23,7 +23,7 @@ export function listenChatRooms() {
 export function listenLastRoomMessages(chatRoom) {
   return (dispatch) => {
     return firebaseApi.listenValue(`/rooms/${chatRoom}/messages`, (messages) => {
-      dispatch({type: types.CHAT_MESSAGES_LOADED_SUCCESS, messages});
+      dispatch({type: types.CHAT_MESSAGES_LOADED_SUCCESS, messages, chatRoom});
     }, 10);
   };
 }
@@ -31,7 +31,7 @@ export function listenLastRoomMessages(chatRoom) {
 export function listenActiveChatRoomUsers(chatRoom) {
   return (dispatch) => {
     return firebaseApi.listenValue(`/rooms/${chatRoom}/activeUsers`, (activeUsers) => {
-      dispatch({type: types.CHAT_ACTIVE_USERS_LOADED_SUCCESS, activeUsers});
+      dispatch({type: types.CHAT_ACTIVE_USERS_LOADED_SUCCESS, activeUsers, chatRoom});
     });
   };
 }

@@ -1,5 +1,5 @@
 import React from 'react';
-import { branch, compose, lifecycle, withState } from 'recompose';
+import { branch, compose, lifecycle, withProps } from 'recompose';
 import {bindActionCreators} from 'redux';
 import { connect } from 'react-redux';
 import Message from '../molecules/Message';
@@ -7,7 +7,7 @@ import DumbMessageList from './DumbMessageList';
 import { listenLastRoomMessages } from '../../../actions/chatActions';
 
 
-const mapStateToProps = (state) => ({ currentRoom: state.chat.currentRoom, messages: state.chat.messages, messagesLoaded: state.chat.messagesLoaded });
+const mapStateToProps = (state) => ({ currentRoom: state.chat.currentRoom, messagesByRoom: state.chat.messagesByRoom, messagesLoaded: state.chat.messagesLoaded });
 const mapDispatchToProps = (dispatch) => ({
   listenLastMessages: bindActionCreators(listenLastRoomMessages, dispatch)
 });
@@ -30,10 +30,11 @@ const MessageList = compose(
     () => () => <p>Loading...</p>
   ),
   branch(
-    (props) => props.messages && Object.keys(props.messages).length > 0,
+    (props) => props.messagesByRoom.hasOwnProperty(props.currentRoom) && Object.keys(props.messagesByRoom[props.currentRoom]).length > 0,
     (BaseComponent) => BaseComponent,
     () => () => <p>No messages ¯\_(ツ)_/¯</p>
-  )
+  ),
+  withProps((props) => ({messages: props.messagesByRoom[props.currentRoom]}))
 )(DumbMessageList);
 
 export default MessageList;
