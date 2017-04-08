@@ -82,6 +82,10 @@ nav {
   width: inherit !important;
 }
 
+.button-disabled {
+  color: gray;
+}
+
 .loading svg {
   display: block;
   width: 100px;

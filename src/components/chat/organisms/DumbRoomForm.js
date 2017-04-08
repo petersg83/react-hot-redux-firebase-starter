@@ -7,9 +7,9 @@ const DumbRoomForm = (props) => {
       type="text"
       placeholder="New room..."
       value={props.text}
-      onChange={(e) => props.setText(e.target.value)}
+      onChange={props.onChange}
     />
-    <input type="submit" value="Send"/>
+    <input type="submit" value="Send" disabled={props.disabled} className={props.disabled && "button-disabled"}/>
   </form>);
 };
 
