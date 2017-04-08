@@ -8,6 +8,13 @@ export default {
     ]
   },
   routing: {},
+  chat: {
+    messagesLoaded: false,
+    currentRoom: null,
+    messages: null,
+    messagesByRoom: {},
+    activeUsersByRoom: {}
+  },
   user: {
     isAdmin: undefined
   },

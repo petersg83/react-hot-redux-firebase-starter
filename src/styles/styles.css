@@ -25,6 +25,43 @@ nav {
   width: 100%;
 }
 
+.messageList {
+  margin-top: 2em;
+  margin-bottom: 2em;
+  max-width: 300px;
+}
+
+.activeUsers {
+  width: 350px;
+}
+
+.messageInfo {
+  font-size: xx-small;
+}
+
+.message {
+  text-align: left;
+  border-radius: 1.3em;
+  background-color: #f1f0f0;
+  color: black;
+  padding-left: 1.5em;
+  padding-right: 1.5em;
+  padding-top: 0.3em;
+  padding-bottom: 0.3em;
+  margin-top: 0.5em;
+  word-wrap: break-word;
+}
+
+.my-message {
+  text-align: right;
+  background-color: #0084ff;
+  color: white;
+}
+
+.consoleInput {
+  width: 300px;
+}
+
 .loading {
   width: 100px;
   height: 100px;
@@ -43,6 +80,10 @@ nav {
 
 .loading div {
   width: inherit !important;
+}
+
+.button-disabled {
+  color: gray;
 }
 
 .loading svg {
