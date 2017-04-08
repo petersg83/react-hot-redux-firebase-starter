@@ -1,9 +1,9 @@
 import React from 'react';
-import { branch, compose, lifecycle, withProps } from 'recompose';
+import { branch, compose, lifecycle, withProps, withHandlers } from 'recompose';
 import {bindActionCreators} from 'redux';
 import { connect } from 'react-redux';
 import DumbActiveUserList from './DumbActiveUserList';
-import { listenActiveChatRoomUsers } from '../../../actions/chatActions';
+import { listenActiveChatRoomUsers, stopListeningActiveChatRoomUsers } from '../../../actions/chatActions';
 
 const mapStateToProps = (state) => ({ currentRoom: state.chat.currentRoom, activeUsersByRoom: state.chat.activeUsersByRoom, activeUsersLoaded: state.chat.activeUsersLoaded });
 const mapDispatchToProps = (dispatch) => ({
@@ -20,6 +20,9 @@ const ActiveUserList = compose(
   lifecycle({
     componentDidMount() {
       this.props.listenActiveChatRoomUsers(this.props.currentRoom);
+    },
+    componentWillUnmount() {
+      stopListeningActiveChatRoomUsers(this.props.currentRoom);
     }
   }),
   branch(

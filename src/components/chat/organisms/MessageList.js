@@ -1,10 +1,10 @@
 import React from 'react';
-import { branch, compose, lifecycle, withProps } from 'recompose';
+import { branch, compose, lifecycle, withProps, withHandlers } from 'recompose';
 import {bindActionCreators} from 'redux';
 import { connect } from 'react-redux';
 import Message from '../molecules/Message';
 import DumbMessageList from './DumbMessageList';
-import { listenLastRoomMessages } from '../../../actions/chatActions';
+import { listenLastRoomMessages, stopListeningLastRoomMessages } from '../../../actions/chatActions';
 
 
 const mapStateToProps = (state) => ({ currentRoom: state.chat.currentRoom, messagesByRoom: state.chat.messagesByRoom, messagesLoaded: state.chat.messagesLoaded });
@@ -22,6 +22,9 @@ const MessageList = compose(
   lifecycle({
     componentDidMount() {
       this.props.listenLastMessages(this.props.currentRoom);
+    },
+    componentWillUnmount() {
+      stopListeningLastRoomMessages(this.props.currentRoom);
     }
   }),
   branch(

@@ -28,6 +28,14 @@ export function listenLastRoomMessages(chatRoom) {
   };
 }
 
+export function stopListeningLastRoomMessages(chatRoom) {
+  return firebaseApi.stopListeningValue(`/rooms/${chatRoom}/messages`);
+}
+
+export function stopListeningActiveChatRoomUsers(chatRoom) {
+  return firebaseApi.stopListeningValue(`/rooms/${chatRoom}/activeUsers`);
+}
+
 export function listenActiveChatRoomUsers(chatRoom) {
   return (dispatch) => {
     return firebaseApi.listenValue(`/rooms/${chatRoom}/activeUsers`, (activeUsers) => {

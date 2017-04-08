@@ -59,6 +59,10 @@ class FirebaseApi {
     });
   }
 
+  static stopListeningValue(path) {
+    return firebase.database().ref(path).off('value')
+  }
+
   static listenValue(path, callback, limit = 0) {
     let pathRef = firebase.database().ref(path);
     if (limit > 0) {
