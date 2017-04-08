@@ -9,7 +9,7 @@ export function addChatMessage(chatRoom, message) {
 
 export function createChatRoom(chatRoom) {
   firebaseApi.databaseUpdate(`/rooms/${chatRoom}`, {name: chatRoom});
-  return firebaseApi.databasePush(`/rooms/roomsName`, {name: chatRoom});
+  return firebaseApi.databaseUpdate(`/rooms/roomsName/${chatRoom}`, {name: chatRoom});
 }
 
 export function listenChatRooms() {
